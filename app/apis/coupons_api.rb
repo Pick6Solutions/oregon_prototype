@@ -9,14 +9,9 @@ class CouponsApi < Grape::API
   end
   desc 'Get a list of available coupons'
   get :available do
-    # coupons = Coupon.all
    coupons = Coupon.where("number_available > 0")
    represent coupons, with: CouponRepresenter
   end
-  # get "/available" do
-  #   coupons = Coupon.where(number_available > 0)
-  #   represent coupons, with: CouponRepresenter
-  # end
 
   desc 'Create a coupon'
   params do
