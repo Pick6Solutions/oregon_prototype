@@ -26,6 +26,38 @@ class CouponsApi < Grape::API
     represent coupon, with: CouponRepresenter
   end
 
+  desc 'Redeem a coupon'
+  params do
+    requires :user_id, type: String, desc: "User's ID"
+    requires :user_name, type: String, desc: "User's Name"
+    requires :coupon_id, type: Integer, desc: "Coupon's ID"
+  end
+  post :redeem do
+
+    new_coupon = RedeemedCoupon.create!(permitted_params)
+    redeemed_coupon = Coupon.find(params[:coupon_id])
+
+    if redeemed_coupon.number_available > 0
+      redeemed_coupon.number_available -= 1
+    else
+      redeemed_coupon.number_available = 0
+    end
+    redeemed_coupon.save!
+
+    represent coupon, with: CouponRepresenter
+  end
+
+  resource :redeemed do
+    desc 'Get a list of all redeemed coupons'
+    params do
+      optional :ids, type: Array, desc: 'Array of coupon ids'
+    end
+    get do
+      coupons = params[:ids] ? RedeemedCoupon.where(id: params[:ids]) : Coupon.all
+      represent coupons, with: CouponRepresenter
+    end
+  end
+
   params do
     requires :id, desc: 'ID of the coupon'
   end

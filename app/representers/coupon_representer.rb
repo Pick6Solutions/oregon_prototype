@@ -5,4 +5,5 @@ class CouponRepresenter < Napa::Representer
   property :number_available
   property :pdf_url
   property :image_url
+  property :single_use
 end

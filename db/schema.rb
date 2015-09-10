@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150908182605) do
+ActiveRecord::Schema.define(version: 20150910184032) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,19 @@ ActiveRecord::Schema.define(version: 20150908182605) do
     t.datetime "updated_at"
     t.string   "image_url"
     t.string   "pdf_url"
+    t.boolean  "single_use",       default: false
   end
+
+  create_table "redeemed_coupons", force: true do |t|
+    t.string   "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "unique_id"
+    t.string   "coupon_name"
+    t.string   "user_name"
+    t.integer  "coupon_id"
+  end
+
+  add_index "redeemed_coupons", ["coupon_id"], name: "index_redeemed_coupons_on_coupon_id", using: :btree
 
 end
