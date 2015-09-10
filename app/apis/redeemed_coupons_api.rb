@@ -17,33 +17,60 @@ class RedeemedCouponsApi < Grape::API
     represent redeemed_coupons, with: CouponRepresenter
   end
 
-  desc 'Create an redeemed_coupon'
+  desc 'Redeem a coupon'
   params do
+    requires :coupon_id, type: Integer, desc: 'ID of the redeemed_coupon'
+    requires :user_id, type: String, desc: "User's ID"
+    requires :user_name, type: String, desc: "User's Name"
   end
-
   post do
-    redeemed_coupon = RedeemedCoupon.create!(permitted_params)
-    represent redeemed_coupon, with: RedeemedCouponRepresenter
+    redeemed_coupon = RedeemedCoupon.new(permitted_params)
+    coupon = Coupon.find(params[:coupon_id])
+
+    unless coupon.nil?
+      if coupon.number_available > 0
+        if coupon.number_available == 1
+          coupon.number_available = 0
+        else
+          coupon.number_available -= 1
+        end
+        coupon.save
+        redeemed_coupon.save
+        represent redeemed_coupon, with: RedeemedCouponRepresenter
+      else
+        error!("Not available for redemption.")
+      end
+    end
   end
 
   params do
-    requires :id, desc: 'ID of the redeemed_coupon'
+    requires :user_id, desc: 'ID of user'
   end
-  route_param :id do
-    desc 'Get an redeemed_coupon'
+  route_param :user_id do
+    desc "Retrieve all user's coupons"
     get do
-      redeemed_coupon = RedeemedCoupon.find(params[:id])
-      represent redeemed_coupon, with: RedeemedCouponRepresenter
+      array_of_coupons = RedeemedCoupon.where(user_id: params[:user_id])
+      redeemed_coupons = array_of_coupons.map {|redeemed_coupon| redeemed_coupon.coupon}
+
+      unless redeemed_coupons.nil?
+        represent redeemed_coupons, with: CouponRepresenter
+      end
     end
 
-    desc 'Update an redeemed_coupon'
-    params do
-    end
-    put do
-      # fetch redeemed_coupon record and update attributes.  exceptions caught in app.rb
-      redeemed_coupon = RedeemedCoupon.find(params[:id])
-      redeemed_coupon.update_attributes!(permitted_params)
-      represent redeemed_coupon, with: RedeemedCouponRepresenter
-    end
+    # desc 'Get an redeemed_coupon'
+    # get do
+    #   redeemed_coupon = RedeemedCoupon.find(params[:id])
+    #   represent redeemed_coupon, with: RedeemedCouponRepresenter
+    # end
+
+    # desc 'Update an redeemed_coupon'
+    # params do
+    # end
+    # put do
+    #   # fetch redeemed_coupon record and update attributes.  exceptions caught in app.rb
+    #   redeemed_coupon = RedeemedCoupon.find(params[:id])
+    #   redeemed_coupon.update_attributes!(permitted_params)
+    #   represent redeemed_coupon, with: RedeemedCouponRepresenter
+    # end
   end
 end

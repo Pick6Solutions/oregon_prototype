@@ -11,7 +11,6 @@ class RedeemedCoupon < ActiveRecord::Base
     coupon_id = self.coupon_id
     coupon = self.coupon
     self.coupon_name = coupon.name
-    self.save
   end
 
   def generate_unique_id
@@ -20,8 +19,7 @@ class RedeemedCoupon < ActiveRecord::Base
     timestamp = self.created_at
     coupon_name = self.coupon_name
     number_redeemed = self.coupon.redeemed_coupons(user_id).count
-    self.unique_id = "#{coupon_name}-#{user_id}-#{user_name}-#{number_redeemed}-#{timestamp}"
-    self.save
+    self.unique_id = "CID:#{coupon_name}|UID:#{user_id}|UN:#{user_name}|NR:#{number_redeemed}|TIME:#{timestamp}"
   end
 
   def set_redeemed
