@@ -3,6 +3,7 @@ class ApplicationApi < Grape::API
   extend Napa::GrapeExtenders
 
   mount CouponsApi => '/coupons'
+  mount RedeemedCouponsApi => '/redeemed_coupons'
 
   add_swagger_documentation
 end

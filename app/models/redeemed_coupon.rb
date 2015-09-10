@@ -1,6 +1,6 @@
 class RedeemedCoupon < ActiveRecord::Base
-  after_create :save_coupon_name
-  after_create :generate_unique_id
+  before_save :save_coupon_name, :on => :create
+  before_save :generate_unique_id, :on => :create
   belongs_to :coupon
 
   def self.redeemed_by_user(user_id, coupon_id)

@@ -34,17 +34,22 @@ class CouponsApi < Grape::API
   end
   post :redeem do
 
-    new_coupon = RedeemedCoupon.create!(permitted_params)
-    redeemed_coupon = Coupon.find(params[:coupon_id])
+    redeemed_coupon = RedeemedCoupon.new(permitted_params)
+    coupon = Coupon.find(params[:coupon_id])
 
-    if redeemed_coupon.number_available > 0
-      redeemed_coupon.number_available -= 1
-    else
-      redeemed_coupon.number_available = 0
+    unless coupon.nil?
+      if coupon.number_available > 0
+        if coupon.number_available == 1
+          coupon.number_available = 0
+        else
+          coupon.number_available -= 1
+        end
+        redeemed_coupon.save
+        {:created => true}
+      else
+        {:created => false, :error => {:message => "Not available for redemption."}}
+      end
     end
-    redeemed_coupon.save!
-
-    represent coupon, with: CouponRepresenter
   end
 
   resource :redeemed do
