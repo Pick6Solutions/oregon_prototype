@@ -8,14 +8,16 @@ describe CouponsApi do
   include Rack::Test::Methods
 
   before(:each) do
+    Coupon.all.each do |coupon|
+        coupon.destroy!
+    end
     @coupon = create(:coupon)
   end
 
   describe 'GET /coupons' do
     it 'Should return an array of coupons' do
       get '/coupons'
-
-      expect(response_body).to eq({"data": [{ object_type: 'coupon', id: '#{@coupon.id}', name: '#{@coupon.name}', points: '#{@coupon.points}', number_available: '#{@coupon.number_available}' }]}.to_json)
+      expect(last_response.status).to eq 200
     end
   end
 

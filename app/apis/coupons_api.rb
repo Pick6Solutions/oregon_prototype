@@ -1,5 +1,5 @@
 class CouponsApi < Grape::API
-  desc 'Get a list of coupons'
+  desc 'Get a list of all coupons'
   params do
     optional :ids, type: Array, desc: 'Array of coupon ids'
   end
@@ -7,14 +7,25 @@ class CouponsApi < Grape::API
     coupons = params[:ids] ? Coupon.where(id: params[:ids]) : Coupon.all
     represent coupons, with: CouponRepresenter
   end
+  desc 'Get a list of available coupons'
+  get :available do
+    # coupons = Coupon.all
+   coupons = Coupon.where("number_available > 0")
+   represent coupons, with: CouponRepresenter
+  end
+  # get "/available" do
+  #   coupons = Coupon.where(number_available > 0)
+  #   represent coupons, with: CouponRepresenter
+  # end
 
   desc 'Create a coupon'
   params do
     requires :name, type: String, desc: "Coupon's name"
+    requires :pdf_url, type: String, desc: 'PDF URL for coupon'
+    requires :image_url, type: String, desc: 'Image for coupon'
     requires :points, type: Integer, desc: 'The point value to redeem the coupon'
     requires :number_available, type: Integer, desc: 'Number of coupons available to redeem'
   end
-
   post do
     coupon = Coupon.create!(permitted_params)
     represent coupon, with: CouponRepresenter
@@ -28,6 +39,14 @@ class CouponsApi < Grape::API
     get do
       coupon = Coupon.find(params[:id])
       represent coupon, with: CouponRepresenter
+    end
+
+    desc 'Delete a coupon'
+    delete do
+      coupon = Coupon.find(params[:id])
+      puts coupon
+      coupon.destroy!
+      puts "here"
     end
 
     desc 'Update a coupon'

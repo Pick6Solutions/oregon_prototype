@@ -3,4 +3,6 @@ class CouponRepresenter < Napa::Representer
   property :name
   property :points
   property :number_available
+  property :pdf_url
+  property :image_url
 end
