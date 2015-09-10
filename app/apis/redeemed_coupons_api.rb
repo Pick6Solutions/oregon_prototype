@@ -34,9 +34,9 @@ class RedeemedCouponsApi < Grape::API
         else
           coupon.number_available -= 1
         end
-        coupon.save
-        redeemed_coupon.save
-        represent redeemed_coupon, with: RedeemedCouponRepresenter
+        if coupon.save && redeemed_coupon.save
+          represent redeemed_coupon, with: RedeemedCouponRepresenter
+        end
       else
         error!("Not available for redemption.")
       end
