@@ -4,7 +4,6 @@ Bundler.setup(:default)
 require 'napa/setup'
 Bundler.require(:default, Napa.env.to_sym)
 require 'napa'
-require 'barby'
 
 # load environment
 Napa.load_environment
