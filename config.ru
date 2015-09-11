@@ -1,4 +1,6 @@
 require './app'
+require 'pdfkit'
+use PDFKit::Middleware
 
 # Experimental StatsD Emitter for ActiveRecord
 # require 'napa/active_record_extensions/stats.rb'

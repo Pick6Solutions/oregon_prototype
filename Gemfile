@@ -10,8 +10,10 @@ gem 'json'
 gem 'napa'
 gem 'roar', '~> 0.12.0'
 gem 'grape-swagger'
-gem 'prawn'
 gem 'aws-sdk', '~> 2'
+gem 'pdfkit'
+gem "wkhtmltopdf-binary"
+gem 'grim'
 
 group :development,:test do
   gem 'pry'
