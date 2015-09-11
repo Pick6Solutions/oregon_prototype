@@ -43,19 +43,33 @@ class RedeemedCouponsApi < Grape::API
     end
   end
 
-  params do
-    requires :user_id, desc: 'ID of user'
-  end
-  route_param :user_id do
-    desc "Retrieve all user's coupons"
-    get do
-      array_of_coupons = RedeemedCoupon.where(user_id: params[:user_id])
-      redeemed_coupons = array_of_coupons.map {|redeemed_coupon| redeemed_coupon.coupon}
+  namespace :user do
+    params do
+      requires :user_id, desc: 'ID of user'
+    end
+    route_param :user_id do
+      desc "Retrieve all user's coupons"
+      get do
+        array_of_coupons = RedeemedCoupon.where(user_id: params[:user_id])
+        redeemed_coupons = array_of_coupons.map {|redeemed_coupon| redeemed_coupon.coupon}
 
-      unless redeemed_coupons.nil?
-        represent redeemed_coupons, with: CouponRepresenter
+        unless redeemed_coupons.nil?
+          represent redeemed_coupons, with: CouponRepresenter
+        end
       end
     end
+
+    namespace :set_redeemed do
+      params do
+        requires :coupon_id, type: Integer, desc: 'ID of the coupon to use'
+      end
+      get do
+        coupon = RedeemedCoupon.find(:coupon_id)
+        coupon.set_redeemed = true
+        coupon.save!
+      end
+    end
+  end
 
     # desc 'Get an redeemed_coupon'
     # get do
@@ -72,5 +86,4 @@ class RedeemedCouponsApi < Grape::API
     #   redeemed_coupon.update_attributes!(permitted_params)
     #   represent redeemed_coupon, with: RedeemedCouponRepresenter
     # end
-  end
 end
