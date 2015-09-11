@@ -28,8 +28,12 @@ class RedeemedCoupon < ActiveRecord::Base
 
   def get_coupon_pdf
     filename = './tmp/temp.pdf'
+    http_conn = Faraday.new do |builder|
+      builder.adapter Faraday.default_adapter
+    end 
+    response = http_conn.get self.coupon.pdf_url
     File.open(filename, "wb") do |file|
-      file.write open(self.coupon.pdf_url).read
+      file.write response.body
     end
     convert_pdf_to_img
   end
