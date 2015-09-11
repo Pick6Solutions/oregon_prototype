@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150911030704) do
+ActiveRecord::Schema.define(version: 20150911031135) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,8 +35,6 @@ ActiveRecord::Schema.define(version: 20150911030704) do
     t.string   "user_name"
     t.integer  "coupon_id"
     t.boolean  "is_redeemed",        default: false
-    t.string   "html_file"
-    t.string   "pdf_file"
     t.string   "redeemable_pdf_url"
   end
 

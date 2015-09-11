@@ -17,7 +17,7 @@ class RedeemedCoupon < ActiveRecord::Base
   def generate_unique_id
     timestamp = self.created_at
     number_redeemed = self.coupon.redeemed_coupons(user_id).count
-    self.unique_id = "CID:#{coupon_id}|UN:#{user_name}|NR:#{number_redeemed}|TIME:#{timestamp}|#{SecureRandom.urlsafe_base64(10)}"
+    self.unique_id = "CID:#{coupon_id} | UN:#{user_name} | NR:#{number_redeemed} | TIME:#{timestamp} | #{SecureRandom.urlsafe_base64(10)}"
     self.save
   end
 
@@ -69,6 +69,8 @@ class RedeemedCoupon < ActiveRecord::Base
     obj = s3.bucket('storm-coupon-pdfs').object(URI.escape(unique_id) + '.pdf')
     if obj.upload_file(filename_pdf)
       self.redeemable_pdf_url = obj.public_url
+      self.save
+      FileUtils.rm_rf(Dir.glob('./tmp/*'))
     end
   end
 
