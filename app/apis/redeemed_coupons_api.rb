@@ -43,47 +43,47 @@ class RedeemedCouponsApi < Grape::API
     end
   end
 
+  namespace :set_redeemed do
+    route_param :coupon_id do
+      desc 'Set a coupon as finally redeemed by user'
+      params do
+        requires :coupon_id, type: Integer, desc: 'ID of the redeemed coupon to use'
+      end
+      post do
+        redeemed_coupon = RedeemedCoupon.find(params[:coupon_id])
+        redeemed_coupon.set_redeemed
+
+        represent redeemed_coupon, with: RedeemedCouponRepresenter
+      end
+    end
+  end
+
   namespace :user do
     params do
       requires :user_id, desc: 'ID of user'
     end
     route_param :user_id do
-      desc "Retrieve all user's coupons"
+      desc "Retrieve all user's avialable coupons"
       get do
-        array_of_coupons = RedeemedCoupon.where(user_id: params[:user_id])
-        redeemed_coupons = array_of_coupons.map {|redeemed_coupon| redeemed_coupon.coupon}
+        redeemed_coupons = RedeemedCoupon.where(user_id: params[:user_id], is_redeemed: false)
 
-        unless redeemed_coupons.nil?
-          represent redeemed_coupons, with: RedeemedCouponRepresenter
-        end
-      end
-    end
-
-    namespace :set_redeemed do
-      params do
-        requires :coupon_id, type: Integer, desc: 'ID of the coupon to use'
-      end
-      get do
-        coupon = RedeemedCoupon.find(:coupon_id)
-        coupon.set_redeemed = true
-        coupon.save!
+        represent redeemed_coupons, with: RedeemedCouponRepresenter
       end
     end
   end
 
-    # desc 'Get an redeemed_coupon'
-    # get do
-    #   redeemed_coupon = RedeemedCoupon.find(params[:id])
-    #   represent redeemed_coupon, with: RedeemedCouponRepresenter
-    # end
+  # namespace :set_redeemed do
+  #   params do
+  #     requires :id, type: Integer, desc: 'ID of the redeemed coupon to use'
+  #     requires :user_id, type: String, desc: 'ID of the user redeeming the coupon'
+  #   end
+  #   post do
+  #     coupon = RedeemedCoupon.where(id: params[:id], user_id: params[:user_id])
+  #     coupon.set_redeemed
 
-    # desc 'Update an redeemed_coupon'
-    # params do
-    # end
-    # put do
-    #   # fetch redeemed_coupon record and update attributes.  exceptions caught in app.rb
-    #   redeemed_coupon = RedeemedCoupon.find(params[:id])
-    #   redeemed_coupon.update_attributes!(permitted_params)
-    #   represent redeemed_coupon, with: RedeemedCouponRepresenter
-    # end
+  #     puts coupon
+
+  #     {redeemed: coupon.set_redeemed}
+  #   end
+  # end
 end
