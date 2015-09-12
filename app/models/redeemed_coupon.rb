@@ -1,5 +1,6 @@
 class RedeemedCoupon < ActiveRecord::Base
   before_save :save_coupon_name, :on => :create
+  before_save :save_coupon_image, :on => :create
   after_create :generate_unique_id
   after_create :get_coupon_pdf
   belongs_to :coupon
@@ -9,7 +10,6 @@ class RedeemedCoupon < ActiveRecord::Base
   end
 
   def save_coupon_name
-    coupon_id = self.coupon_id
     coupon = self.coupon
     self.coupon_name = coupon.name
   end
@@ -19,6 +19,11 @@ class RedeemedCoupon < ActiveRecord::Base
     number_redeemed = self.coupon.redeemed_coupons(user_id).count
     self.unique_id = "CID:#{coupon_id} | UN:#{user_name} | NR:#{number_redeemed} | TIME:#{timestamp} | #{SecureRandom.urlsafe_base64(10)}"
     self.save
+  end
+
+  def save_coupon_image
+    coupon = self.coupon
+    self.coupon_name = coupon.image_url
   end
 
   def set_redeemed

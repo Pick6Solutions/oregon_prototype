@@ -54,7 +54,7 @@ class RedeemedCouponsApi < Grape::API
         redeemed_coupons = array_of_coupons.map {|redeemed_coupon| redeemed_coupon.coupon}
 
         unless redeemed_coupons.nil?
-          represent redeemed_coupons, with: CouponRepresenter
+          represent redeemed_coupons, with: RedeemedCouponRepresenter
         end
       end
     end
