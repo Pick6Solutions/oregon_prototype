@@ -12,8 +12,10 @@ gem 'roar', '~> 0.12.0'
 gem 'grape-swagger'
 gem 'aws-sdk', '~> 2'
 gem 'pdfkit'
-gem "wkhtmltopdf-binary"
+gem 'wkhtmltopdf-binary'
 gem 'grim'
+gem 'dotenv-heroku'
+gem 'puma'
 
 group :development,:test do
   gem 'pry'

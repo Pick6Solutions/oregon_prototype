@@ -49,6 +49,8 @@ GEM
     diff-lcs (1.2.5)
     docile (1.1.5)
     dotenv (1.0.2)
+    dotenv-heroku (0.0.1)
+      rake
     equalizer (0.0.11)
     erubis (2.7.0)
     factory_girl (4.5.0)
@@ -120,6 +122,7 @@ GEM
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
       slop (~> 3.4)
+    puma (2.13.4)
     rack (1.5.5)
     rack-accept (0.4.5)
       rack (>= 0.4)
@@ -193,6 +196,7 @@ DEPENDENCIES
   activerecord (~> 4.0.0)
   aws-sdk (~> 2)
   database_cleaner
+  dotenv-heroku
   factory_girl
   grape-swagger
   grim
@@ -203,6 +207,7 @@ DEPENDENCIES
   pdfkit
   pg
   pry
+  puma
   rack-cors
   rack-test
   roar (~> 0.12.0)
