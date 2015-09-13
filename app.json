@@ -1,0 +1,8 @@
+{
+  "name": "Pick6 - Storm Coupon Service",
+  "description": "Pick6 - Storm Coupon Service",
+  "image": "heroku/ruby",
+  "addons": [
+    "heroku-postgresql"
+  ]
+}

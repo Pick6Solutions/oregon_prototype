@@ -1,1 +1,1 @@
-web: bundle exec napa server
+web: bundle exec puma -C config/puma.rb
