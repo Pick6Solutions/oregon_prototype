@@ -36,7 +36,7 @@ class RedeemedCoupon < ActiveRecord::Base
     http_conn = Faraday.new do |builder|
       builder.adapter Faraday.default_adapter
     end 
-    response = http_conn.get self.coupon.pdf_url
+    response = http_conn.get URI.escape(self.coupon.pdf_url)
     File.open(filename, "wb") do |file|
       file.write response.body
     end
