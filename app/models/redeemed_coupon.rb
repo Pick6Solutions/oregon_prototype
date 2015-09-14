@@ -23,7 +23,7 @@ class RedeemedCoupon < ActiveRecord::Base
 
   def save_coupon_image
     coupon = self.coupon
-    self.coupon_name = coupon.image_url
+    self.coupon_name = URI.escape(coupon.image_url)
   end
 
   def set_redeemed
