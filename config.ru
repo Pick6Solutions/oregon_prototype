@@ -1,5 +1,8 @@
 require './app'
 require 'pdfkit'
+require 'newrelic_rpm'
+
+NewRelic::Agent.manual_start
 use PDFKit::Middleware
 
 # Experimental StatsD Emitter for ActiveRecord
