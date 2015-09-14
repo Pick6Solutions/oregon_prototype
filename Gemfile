@@ -16,6 +16,7 @@ gem 'wkhtmltopdf-binary'
 gem 'grim'
 gem 'dotenv-heroku'
 gem 'puma'
+gem 'newrelic_rpm'
 
 group :development,:test do
   gem 'pry'
