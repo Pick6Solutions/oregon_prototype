@@ -17,6 +17,7 @@ gem 'grim'
 gem 'dotenv-heroku'
 gem 'puma'
 gem 'newrelic_rpm'
+gem 'newrelic-grape'
 
 group :development,:test do
   gem 'pry'

@@ -1,9 +1,15 @@
 require './app'
+
 require 'pdfkit'
-require 'newrelic_rpm'
+use PDFKit::Middleware
+
+if ENV['RACK_ENV'] == 'development'
+  puts 'Loading NewRelic in developer mode ...'
+  require 'new_relic/rack/developer_mode'
+  use NewRelic::Rack::DeveloperMode
+end
 
 NewRelic::Agent.manual_start
-use PDFKit::Middleware
 
 # Experimental StatsD Emitter for ActiveRecord
 # require 'napa/active_record_extensions/stats.rb'
