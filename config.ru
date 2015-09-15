@@ -22,7 +22,7 @@ use Rack::Cors do
 end
 #
 # use Honeybadger::Rack::ErrorNotifier
-# use Napa::Middleware::Logger
+use Napa::Middleware::Logger
 
 use Napa::Middleware::AppMonitor
 # Uncomment to require header passwords for all requests
