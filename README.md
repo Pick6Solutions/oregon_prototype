@@ -10,23 +10,53 @@
 
 ### Overview
 
-:bow: Tell us about your wonderful service :bow:
+This servic manages coupons for the storm rewards store.
 
-In this section, please answer the questions, "What is this service?" or "What does this service do?"
+Built with:
+- [Napa](https://github.com/bellycard/napa) - Napa is a simple framework for building Rack based APIs using Grape, Roar and ActiveRecord.
 
 ### How Does It Work
 
-Ohhh tell us, how does it function? :bow: :bow:
+Coupons consist of the following attributes:
+- Name
+- Description
+- PDF URL (S3 Link)
+- IMAGE URL (S3 Link)
+- Point value
+- Number available
 
-Tell us about the __mechanics__ or __logic__ driving the service. Diagrams and pictures are :angel:
+Redeemed Coupons belong to a coupon and consist of the following attributes:
+- Coupon ID of it's parent coupon
+- User ID of user redeemeding
+- User Name of user redeeming
+- Generated Unique ID that follow the convention:
+```ruby
+"CID:#{coupon_id} | UN:#{user_name} | NR:#{number_redeemed} | TIME:#{timestamp} | #{SecureRandom.urlsafe_base64(10)}"
+```
+- Is redeemed boolean
+- Generated redeemable pdf url (S3 link)
 
 ### Endpoints
 
-How must we interact with your great service? :bow:
+Swagger Docs: 
+With local server running. Go to [Swagger UI Sample](http://petstore.swagger.io/) and change url to http://localhost:9393/swagger_doc to view interative endpoint docs. Alternatively, run [Swagger UI](https://github.com/swagger-api/swagger-ui) locally.
 
-Try typing `rake routes` into your console, and then paste that here.
+Postman collection: 
+https://www.getpostman.com/collections/6dbb46ca82986a77cb22
 
-If those endpoints need to be explained in more detail, please bless us with your wisdom.
+```    GET        /coupons(.:format)                       # Get a list of all coupons
+     GET        /coupons/available(.:format)             # Get a list of available coupons
+     POST       /coupons(.:format)                       # Create a coupon
+     GET        /coupons/redeemed(.:format)              # Get a list of all redeemed coupons
+     GET        /coupons/:id(.:format)                   # Get an coupon
+     DELETE     /coupons/:id(.:format)                   # Delete a coupon
+     PUT        /coupons/:id(.:format)                   # Update a coupon
+     GET        /redeemed_coupons(.:format)              # Get a list of redeemed_coupons
+     POST       /redeemed_coupons(.:format)              # Redeem a coupon
+     POST       /redeemed_coupons/set_redeemed/:coupon_id(.:format) # Set a coupon as finally redeemed by user
+     GET        /redeemed_coupons/user/:user_id(.:format) # Retrieve all user's avialable coupons
+     GET        /swagger_doc(.:format)                   # Swagger compatible API description
+     GET        /swagger_doc/:name(.:format)             # Swagger compatible API description for specific API```
 
 ### Development
 
@@ -35,21 +65,24 @@ bundle install
 
 rake db:reset
 
-rspec spec
+RACK_ENV=test rake db:reset
 
-rackup
+bundle exec napa server
 ```
 
-So wonderful, so informative! :bow:
+Send your first request:
 
-What else do we need to know so that a new developer can start contributing __within 30 minutes__?
+```bash
+curl -X GET http://localhost:9393/coupons
+```
+
+Production is deployed to heroku at: https://storm-coupons-service.herokuapp.com/
+
+Swagger Docs:
 
 ### Extra Links
 
-What a perfectly constructed service! We're so honored :bow:
-
-If your service makes heavy use of other gems or API's, imbue us with that knowledge in the form of
-
-- [Link to documentation]()
-- [etc.]()
-- [For information on how to create links in Markdown, please click here](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet#links)
+- [Grape](https://github.com/ruby-grape/grape)
+- [Roar](https://github.com/ruby-grape/grape-roar)
+- [Grape-Swagger](https://github.com/ruby-grape/grape-swagger)
+- [Postman](https://www.getpostman.com/)
