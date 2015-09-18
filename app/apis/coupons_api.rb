@@ -60,6 +60,8 @@ class CouponsApi < Grape::API
       optional :name, type: String, desc: "Coupon's name"
       optional :points, type: Integer, desc: 'The point value to redeem the coupon'
       optional :number_available, type: Integer, desc: 'Number of coupons available to redeem'
+      optional :image_url, type: String, desc: "Coupon Image URL"
+      optional :pdf_url, type: String, desc: "PDF Image URL"
     end
     put do
       # fetch coupon record and update attributes.  exceptions caught in app.rb
