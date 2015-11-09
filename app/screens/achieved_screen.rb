@@ -1,4 +1,5 @@
 class AchievedScreen < PM::Screen
+  title ""
   stylesheet AchievedScreenStylesheet
   status_bar :none
   def on_load

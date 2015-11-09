@@ -1,4 +1,5 @@
 class OregonLoadingScreen < PM::Screen
+  title ""
   stylesheet OregonLoadingScreenStylesheet
   status_bar :none
   

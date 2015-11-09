@@ -1,4 +1,5 @@
 class ChallengeScreen < PM::Screen
+  title ""
   stylesheet ChallengeScreenStylesheet
   status_bar :none
   def on_load

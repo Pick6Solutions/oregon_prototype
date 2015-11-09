@@ -1,4 +1,5 @@
 class AddPredictionScreen < PM::Screen
+  title ""
   stylesheet AddPredictionScreenStylesheet
   status_bar :none
   def on_load

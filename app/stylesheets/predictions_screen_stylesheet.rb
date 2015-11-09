@@ -17,7 +17,13 @@ class PredictionsScreenStylesheet < ApplicationStylesheet
 
 
   def go_button(st)
-    st.frame = 'd12:i17'
+    st.frame = 'a2:l4'
+    st.text = ""
+    st.background_color = color.clear
+  end
+
+  def select_button(st)
+    st.frame = 'c12:j17'
     st.text = ""
     st.background_color = color.clear
   end

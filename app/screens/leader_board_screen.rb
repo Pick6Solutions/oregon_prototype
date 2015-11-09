@@ -1,4 +1,5 @@
 class LeaderBoardScreen < PM::Screen
+  title ""
   stylesheet LeaderBoardScreenStylesheet
   status_bar :none
   def on_load
