@@ -1,4 +1,5 @@
 class CheckInScreen < PM::Screen
+  title ""
   stylesheet CheckInScreenStylesheet
   status_bar :none
   def on_load

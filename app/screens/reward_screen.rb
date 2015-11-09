@@ -1,4 +1,5 @@
 class RewardScreen < PM::Screen
+  title ""
   stylesheet RewardScreenStylesheet
   status_bar :none
   def on_load

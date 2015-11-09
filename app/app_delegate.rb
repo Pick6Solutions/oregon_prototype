@@ -10,5 +10,7 @@ class AppDelegate < PM::Delegate
   def on_load(app, options)
     cdq.setup # Remove this if you aren't using CDQ
     open OregonHomeScreen.new(nav_bar: false)
+
+     BITHockeyManagerLauncher.new.start
   end
 end
