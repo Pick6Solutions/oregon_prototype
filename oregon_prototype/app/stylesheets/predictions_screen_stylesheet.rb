@@ -16,7 +16,7 @@ class PredictionsScreenStylesheet < ApplicationStylesheet
 
 
   def go_button(st)
-    st.frame = {t: 515, from_right: 100, width: 150, height: 125}
+    st.frame = {t: 160, from_right: 0, width: 370, height: 75}
     st.text = "Pick A Prediction"
     st.background_color = color.clear
     st.color = color.clear

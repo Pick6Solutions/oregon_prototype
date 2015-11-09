@@ -8,7 +8,7 @@ class PredictionsScreen < PM::Screen
     # # append UIButton, :go_button
     
     append(UIButton, :go_button).on(:touch) do |sender|
-      open PredictionScreen.new(nav_bar: false)
+      open FirstPredictionScreen.new(nav_bar: false)
     end
     
     append(UIButton, :back_button).on(:touch) do |sender|

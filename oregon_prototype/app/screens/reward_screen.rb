@@ -7,9 +7,9 @@ class RewardScreen < PM::Screen
     @image_url = append!(UIImageView, :image_url)
     # # append UIButton, :go_button
     
-    append(UIButton, :go_button).on(:touch) do |sender|
-      open RewardStoreScreen.new(nav_bar: false)
-    end
+    # append(UIButton, :go_button).on(:touch) do |sender|
+    #   open RewardStoreScreen.new(nav_bar: false)
+    # end
     
     append(UIButton, :back_button).on(:touch) do |sender|
       open RewardStoreScreen.new(nav_bar: false)

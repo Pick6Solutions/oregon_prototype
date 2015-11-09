@@ -1,5 +1,5 @@
-class AddPredictionScreen < PM::Screen
-  stylesheet AddPredictionScreenStylesheet
+class SelectedNewPredictionsScreen < PM::Screen
+  stylesheet SelectedNewPredictionsScreenStylesheet
 
   def on_load
     # set_nav_bar_button :left, system_item: :camera, action: :nav_left_button
@@ -8,13 +8,14 @@ class AddPredictionScreen < PM::Screen
     # # append UIButton, :go_button
     
     append(UIButton, :go_button).on(:touch) do |sender|
-      open NewPredictionsScreen.new(nav_bar: false)
+      open AchievedScreen.new(nav_bar: false)
     end
     
     append(UIButton, :back_button).on(:touch) do |sender|
-      open CheckInScreen.new(nav_bar: false)
+      open AddPredictionScreen.new(nav_bar: false)
     end
-    
+    # @sample_image = append!(UIImageView, :sample_image)
+    # @hello_world = append!(UILabel, :hello_world)
   end
 
   def will_animate_rotate(orientation, duration)

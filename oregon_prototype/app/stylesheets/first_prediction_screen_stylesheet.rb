@@ -1,4 +1,4 @@
-class AddPredictionScreenStylesheet < ApplicationStylesheet
+class FirstPredictionScreenStylesheet < ApplicationStylesheet
 
   def setup
     # Add stylesheet specific setup stuff here.
@@ -10,21 +10,20 @@ class AddPredictionScreenStylesheet < ApplicationStylesheet
   end
   
   def image_url(st)
-    st.image = image.resource('add_prediction.png')
     st.frame = :full
+    st.image = image.resource('1st_prediction.png')
   end
 
-  
-   def back_button(st)
-    st.frame = {t: 20, from_right: 200, width: 200, height: 50}
-    st.text = "Back"
+  def go_button(st)
+    st.frame = {t: 235, from_right: 0, width: 375, height: 80}
+    st.text = "All Predications"
     st.background_color = color.clear
     st.color = color.clear
   end
   
-      def go_button(st)
-    st.frame = {t: 380, from_right: 100, width: 160, height: 160}
-    st.text = "Predictions"
+  def back_button(st)
+    st.frame = {t: 20, from_right: 200, width: 200, height: 50}
+    st.text = "Back"
     st.background_color = color.clear
     st.color = color.clear
   end
