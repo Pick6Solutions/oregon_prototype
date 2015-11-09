@@ -6,7 +6,7 @@ class HomeScreenStylesheet < ApplicationStylesheet
   end
 
   def root_view(st)
-    st.background_color = color.green
+    st.background_color = color.black
     # st.frame = {w: :full, h: :full}
     # st.image = image.resource('sample_image.JPG')
     # st.content_mode = three_point_five_inch? ? UIViewContentModeScaleAspectFill : UIViewContentModeScaleAspectFit
@@ -39,9 +39,7 @@ class HomeScreenStylesheet < ApplicationStylesheet
   def sample_image(st)
     st.frame = :full
     st.image = image.resource('home_screen.png')
-
-    # an example of using the view directly
-    st.view.contentMode = UIViewContentModeScaleAspectFit
+    st.content_mode = UIViewContentModeScaleAspectFill
   end
 
 end

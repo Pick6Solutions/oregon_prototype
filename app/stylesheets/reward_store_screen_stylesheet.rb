@@ -6,34 +6,25 @@ class RewardStoreScreenStylesheet < ApplicationStylesheet
   end
 
   def root_view(st)
-    st.background_color = color.red
-  end
-
-  def hello_world(st)
-    st.frame = {t: 100, w: 200, h: 18, centered: :horizontal}
-    st.text_alignment = :center
-    st.color = color.battleship_gray
-    st.font = font.medium
-    st.text = 'Hello World'
+    st.background_color = color.black
   end
   
   def image_url(st)
     st.frame = :full
     st.image = image.resource('reward_store.png')
+    st.content_mode = UIViewContentModeScaleAspectFill
   end
 
   def go_button(st)
-    st.frame = {t: 180, from_right: 0, width: 180, height: 180}
-    st.text = "Reward"
+    st.frame = 'g3:l8'
+    st.text = ""
     st.background_color = color.clear
-    st.color = color.clear
   end
 
   def back_button(st)
-    st.frame = {t:0, from_right: 280, width: 150, height: 70}
-    st.text = "Back"
+    st.frame ={fl: 0 , t: 0, w: :quarter, h: 100}
+    st.text = ""
     st.background_color = color.clear
-    st.color = color.clear
   end
 
 end
