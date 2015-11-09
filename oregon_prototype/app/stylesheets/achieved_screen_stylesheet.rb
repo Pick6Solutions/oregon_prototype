@@ -14,7 +14,7 @@ class AchievedScreenStylesheet < ApplicationStylesheet
     st.frame = :full
   end
   
-      def go_button(st)
+   def go_button(st)
     st.frame = {t: 330, from_right: 120, width: 150, height: 130}
     st.text = "Predictions"
     st.background_color = color.clear

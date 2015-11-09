@@ -1,5 +1,7 @@
 class AppDelegate < PM::Delegate
   include CDQ # Remove this if you aren't using CDQ
+  status_bar :none
+  # status_bar :light, {animation: :fade}
 
   # Without this, settings in StandardAppearance will not be correctly applied
   # Remove this if you aren't using StandardAppearance

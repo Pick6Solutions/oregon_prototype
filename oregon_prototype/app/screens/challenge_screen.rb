@@ -1,6 +1,6 @@
 class ChallengeScreen < PM::Screen
   stylesheet ChallengeScreenStylesheet
-
+  status_bar :none
   def on_load
     @image_url = append!(UIImageView, :image_url)
     
