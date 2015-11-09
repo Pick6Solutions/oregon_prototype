@@ -1,38 +1,24 @@
-source 'https://rubygems.org'
-ruby "2.2.3"
+source "https://rubygems.org"
 
-gem 'rack-cors'
-gem 'pg'
-gem 'activerecord', '~> 4.0.0', :require => 'active_record'
-gem 'hashie-forbidden_attributes'
-gem 'honeybadger', '~> 1.16.7'
-gem 'json'
-gem 'napa'
-gem 'roar', '~> 0.12.0'
-gem 'grape-swagger'
-gem 'aws-sdk', '~> 2'
-gem 'pdfkit'
-gem 'wkhtmltopdf-binary'
-gem 'grim'
-gem 'dotenv-heroku'
-gem 'puma'
-gem 'newrelic_rpm'
-gem 'newrelic-grape'
+gem "rake"
+gem "motion-cocoapods"
+gem "redpotion"
+gem "cdq" # Core Data
+gem "motion-yaml", "1.4" # Version 1.5 breaks CDQ
+gem "afmotion" # Networking
 
-group :development,:test do
-  gem 'pry'
-end
+# Debugging tools
+gem "newclear" # Completely wipe out the simulator and rebuild
 
-group :development do
-  gem 'rubocop', require: false
-  gem 'shotgun', require: false
-end
+# Optional
 
-group :test do
-  gem 'factory_girl'
-  gem 'rspec'
-  gem 'rack-test'
-  gem 'simplecov'
-  gem 'webmock'
-  gem 'database_cleaner'
-end
+# gem "ProMotion-form"
+# gem "ProMotion-push", "~> 0.2" # Push Notifications
+# gem "ProMotion-map", "~> 0.3"  # PM::MapScreen
+# gem "ProMotion-iap" # PM In-app purchases
+# gem "ProMotion-menu" # PM Side menu
+
+# gem "motion-mastr" # Attributed strings: https://github.com/skellock/motion-mastr
+# gem 'motion-blitz' # Easy HUD with SVProgressHUD
+# gem "motion-juxtapose", "~> 0.1" # Screenshot acceptance comparison tool
+# gem "bubble-wrap"
