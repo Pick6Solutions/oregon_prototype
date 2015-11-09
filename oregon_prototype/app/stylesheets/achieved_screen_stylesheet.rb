@@ -6,27 +6,25 @@ class AchievedScreenStylesheet < ApplicationStylesheet
   end
 
   def root_view(st)
-    st.background_color = color.red
+    st.background_color = color.black
   end
   
   def image_url(st)
     st.image = image.resource('achieved.png')
     st.frame = :full
-  end
-  
-   def go_button(st)
-    st.frame = {t: 330, from_right: 120, width: 150, height: 130}
-    st.text = "Predictions"
-    st.background_color = color.clear
-    st.color = color.clear
+    st.content_mode = UIViewContentModeScaleAspectFill
   end
 
-  
-   def back_button(st)
-    st.frame = {t: 20, from_right: 200, width: 200, height: 50}
-    st.text = "Back"
+  def go_button(st)
+    st.frame = 'd9:i14'
+    st.text = ""
     st.background_color = color.clear
-    st.color = color.clear
+  end
+
+  def back_button(st)
+    st.frame ={fl: 0 , t: 0, w: :quarter, h: 100}
+    st.text = ""
+    st.background_color = color.clear
   end
 
 end

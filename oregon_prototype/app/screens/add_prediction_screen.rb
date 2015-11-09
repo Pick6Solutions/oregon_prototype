@@ -16,8 +16,4 @@ class AddPredictionScreen < PM::Screen
     end
     
   end
-
-  def will_animate_rotate(orientation, duration)
-    find.all.reapply_styles
-  end
 end

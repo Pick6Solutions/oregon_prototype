@@ -6,26 +6,25 @@ class PredictionScreenStylesheet < ApplicationStylesheet
   end
 
   def root_view(st)
-    st.background_color = color.red
+    st.background_color = color.black
   end
   
   def image_url(st)
     st.frame = :full
     st.image = image.resource('prediction_screen.png')
+    st.content_mode = UIViewContentModeScaleAspectFill
   end
 
   def go_button(st)
-    st.frame = {t: 200, from_right: 0, width: 375, height: 400}
-    st.text = "All Predications"
+    st.frame = 'd9:i14'
+    st.text = ""
     st.background_color = color.clear
-    st.color = color.clear
   end
   
   def back_button(st)
-    st.frame = {t: 20, from_right: 200, width: 200, height: 50}
-    st.text = "Back"
+    st.frame ={fl: 0 , t: 0, w: :quarter, h: 100}
+    st.text = ""
     st.background_color = color.clear
-    st.color = color.clear
   end
 
 end

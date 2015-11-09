@@ -20,7 +20,7 @@ class CheckInScreen < PM::Screen
     end
     
     append(UIButton, :back_button).on(:touch) do |sender|
-      open OregonHomeScreen.new(nav_bar: false)
+      open HomeScreen.new(nav_bar: false)
     end
     
     append(UIButton, :leader_button).on(:touch) do |sender|

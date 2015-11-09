@@ -17,8 +17,4 @@ class PredictionsScreen < PM::Screen
     # @sample_image = append!(UIImageView, :sample_image)
     # @hello_world = append!(UILabel, :hello_world)
   end
-
-  def will_animate_rotate(orientation, duration)
-    find.all.reapply_styles
-  end
 end

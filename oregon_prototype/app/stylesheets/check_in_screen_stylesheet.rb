@@ -12,6 +12,7 @@ class CheckInScreenStylesheet < ApplicationStylesheet
   def image_url(st)
     st.image = image.resource('welcome.png')
     st.frame = :full
+    st.content_mode = UIViewContentModeScaleAspectFill
   end
 
   def go_button(st)

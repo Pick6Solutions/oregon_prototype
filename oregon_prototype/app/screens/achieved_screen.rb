@@ -18,7 +18,4 @@ class AchievedScreen < PM::Screen
     # @hello_world = append!(UILabel, :hello_world)
   end
 
-  def will_animate_rotate(orientation, duration)
-    find.all.reapply_styles
-  end
 end
