@@ -6,7 +6,7 @@ class CheckInScreenStylesheet < ApplicationStylesheet
   end
 
   def root_view(st)
-    st.background_color = color.red
+    st.background_color = color.black
   end
   
   def image_url(st)
@@ -14,32 +14,34 @@ class CheckInScreenStylesheet < ApplicationStylesheet
     st.frame = :full
   end
 
- def go_button(st)
-    st.frame = {t: 500, from_right: 110, width: 150, height: 130}
-    st.text = "Predictions"
+  def go_button(st)
+    st.frame = 'd12:i17'
+    st.text = ""
     st.background_color = color.clear
-    st.color = color.clear
+  end
+
+  def check_in_button(st)
+    st.frame = 'd7:i9'
+    st.text = ""
+    st.background_color = color.clear
   end
   
-   def reward_store_button(st)
-    st.frame = {t: 570, from_right: 10, width: 80, height: 100}
-    st.text = "Reward Store"
+  def reward_store_button(st)
+    st.frame = 'j14:l17'
+    st.text = ""
     st.background_color = color.clear
-    st.color = color.clear
   end
+   
+   def back_button(st)
+    st.frame ={fl: 0 , t: 0, w: :quarter, h: 100}
+    st.text = ""
+    st.background_color = color.clear
+   end
   
   def leader_button(st)
-    st.frame = {t: 570, from_right: 280, width: 100, height: 100}
-    st.text = "Reward Store"
+    st.frame = 'a15:c17'
+    st.text = ""
     st.background_color = color.clear
-    st.color = color.clear
-  end
-  
-   def back_button(st)
-    st.frame = {t: 20, from_right: 200, width: 200, height: 50}
-    st.text = "Back"
-    st.background_color = color.clear
-    st.color = color.clear
   end
 
 end

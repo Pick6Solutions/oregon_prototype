@@ -30,7 +30,7 @@ Motion::Project::App.setup do |app|
   app.icons = Dir.glob("resources/icon*.png").map{|icon| icon.split("/").last}
 
   app.device_family = [:iphone, :ipad]
-  app.interface_orientations = [:portrait, :landscape_left, :landscape_right, :portrait_upside_down]
+  app.interface_orientations = [:portrait]
 
   app.files += Dir.glob(File.join(app.project_dir, 'lib/**/*.rb'))
 
@@ -50,8 +50,8 @@ Motion::Project::App.setup do |app|
   end
 
   app.development do
-    app.codesign_certificate = "iPhone Developer: YOURNAME"
-    app.provisioning_profile = "signing/oregon_prototype.mobileprovision"
+    app.codesign_certificate = "iOS Development: Manuel Pineyro (RXNNAR6AP4)"
+    app.provisioning_profile = "signing/Pick6.mobileprovision"
   end
 
   app.release do

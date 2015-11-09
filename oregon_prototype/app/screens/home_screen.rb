@@ -23,10 +23,5 @@ class HomeScreen < PM::Screen
     append(UIButton, :back_button).on(:touch) do |sender|
       open OregonHomeScreen.new(nav_bar: false)
     end
-    # @hello_world = append!(UILabel, :hello_world)
-  end
-  
-  def will_animate_rotate(orientation, duration)
-    find.all.reapply_styles
   end
 end

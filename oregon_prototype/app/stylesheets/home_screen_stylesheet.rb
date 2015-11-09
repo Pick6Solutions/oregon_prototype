@@ -13,31 +13,27 @@ class HomeScreenStylesheet < ApplicationStylesheet
   end
 
   def go_button(st)
-    st.frame = {t: 500, from_right: 120, width: 150, height: 130}
-    st.text = "Predictions"
+    st.frame = 'd12:i17'
+    st.text = ""
     st.background_color = color.clear
-    st.color = color.clear
   end
   
   def check_in_button(st)
-    st.frame = {t: 280, from_right: 100, width: 160, height: 80}
-    st.text = "Check In"
+    st.frame = 'd7:i9'
+    st.text = ""
     st.background_color = color.clear
-    st.color = color.clear
   end
   
   def reward_store_button(st)
-    st.frame = {t: 570, from_right: 10, width: 80, height: 100}
-    st.text = "Reward Store"
+    st.frame = 'j14:l17'
+    st.text = ""
     st.background_color = color.clear
-    st.color = color.clear
   end
   
-    def back_button(st)
-    st.frame = {t: 20, from_right: 200, width: 200, height: 50}
-    st.text = "Back"
+  def back_button(st)
+    st.frame ={fl: 0 , t: 0, w: :quarter, h: 100}
+    st.text = ""
     st.background_color = color.clear
-    st.color = color.clear
   end
 
   def sample_image(st)
