@@ -11,7 +11,7 @@ Motion::Project::App.setup do |app|
   # Use `rake config' to see complete project settings
 
   app.name = 'oregon_prototype'
-  app.identifier = 'com.your_domain_here.oregon_prototype'
+  app.identifier = 'com.pick6.oregon_prototype'
 
   app.short_version = '0.1.0'
   # Get version from git
@@ -56,13 +56,20 @@ Motion::Project::App.setup do |app|
 
   app.release do
     app.entitlements['get-task-allow'] = false
-    app.codesign_certificate = 'iPhone Distribution: YOURNAME'
-    app.provisioning_profile = "signing/oregon_prototype.mobileprovision"
+    app.codesign_certificate = 'iOS Distribution: Portland Winter Hawks, Inc.'
+    app.provisioning_profile = "signing/Winterhawks_Pick6.mobileprovision"
     app.entitlements['beta-reports-active'] = true # For TestFlight
 
     app.seed_id = "YOUR_SEED_ID"
     app.entitlements['application-identifier'] = app.seed_id + '.' + app.identifier
     app.entitlements['keychain-access-groups'] = [ app.seed_id + '.' + app.identifier ]
+  end
+
+  if app.hockeyapp?
+    app.hockeyapp do
+      set :api_token, '8fe7521c2ac2498381fd9785a1866145'
+      set :beta_id, '1e0a9b6324bf4c17a7abea623fc6e1d9'
+    end
   end
 
   puts "Name: #{app.name}"

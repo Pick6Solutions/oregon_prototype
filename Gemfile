@@ -11,6 +11,7 @@ gem "afmotion" # Networking
 gem "newclear" # Completely wipe out the simulator and rebuild
 
 # Optional
+gem 'motion-hockeyapp'
 
 # gem "ProMotion-form"
 # gem "ProMotion-push", "~> 0.2" # Push Notifications
